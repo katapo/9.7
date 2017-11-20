@@ -34,6 +34,8 @@ function setGameElements() {
             newGameElem.style.display = 'none';
             pickElem.style.display = 'block';
             resultsElem.style.display = 'block';
+            playerResultElem.innerText = '';
+            computerResultElem.innerText = '';
             break;
         case 'ended':
             newGameBtn.innerText = 'Jeszcze raz';
@@ -114,6 +116,7 @@ function setGamePoints() {
     playerPointsElem.innerHTML = player.score;
     computerPointsElem.innerHTML = computer.score;
 
+    setTimeout(checkGameEnd, 0);
 
 }
 
@@ -129,3 +132,4 @@ function checkGameEnd() {
         alert("Komputer jako pierwszy zdobył 10 punktów, niestety przegrałeś.");
     }
 }
+
