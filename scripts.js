@@ -29,7 +29,7 @@ var newGameElem = document.getElementById('js-newGameElement'),
     resultsElem = document.getElementById('js-resultsTableElement');
 
 function setGameElements() {
-    switch(gameState) {
+    switch (gameState) {
         case 'started':
             newGameElem.style.display = 'none';
             pickElem.style.display = 'block';
@@ -54,15 +54,16 @@ var playerPointsElem = document.getElementById('js-playerPoints'),
     computerPointsElem = document.getElementById('js-computerPoints');
 
 function newGame() {
-  player.name = prompt('Please enter your name', 'imię gracza');
-  if (player.name) {
-    player.score = computer.score = 0;
-    gameState = 'started';
-    setGameElements();
+    player.name = prompt('Please enter your name', 'imię gracza');
+    if (player.name) {
+        player.score = computer.score = 0;
+        playerPickElem.innerHTML = computerPickElem.innerHTML = '';
+        gameState = 'started';
+        setGameElements();
 
-    playerNameElem.innerHTML = player.name;
-    setGamePoints();
-  }
+        playerNameElem.innerHTML = player.name;
+        setGamePoints();
+    }
 }
 
 
@@ -87,25 +88,25 @@ function playerPick(playerPick) {
 
 function checkRoundWinner(playerPick, computerPick) {
     playerResultElem.innerHTML = computerResultElem.innerHTML = '';
-  
+
     var winnerIs = 'player';
-  
+
     if (playerPick == computerPick) {
         winnerIs = 'noone'; // remis
     } else if (
-          (computerPick == 'rock' &&  playerPick == 'scissors') ||
-          (computerPick == 'scissors' &&  playerPick == 'paper') ||
-          (computerPick == 'paper' &&  playerPick == 'rock')) {
-  
-          winnerIs = 'computer';
+        (computerPick == 'rock' && playerPick == 'scissors') ||
+        (computerPick == 'scissors' && playerPick == 'paper') ||
+        (computerPick == 'paper' && playerPick == 'rock')) {
+
+        winnerIs = 'computer';
     }
-  
+
     if (winnerIs == 'player') {
-          playerResultElem.innerHTML = "Win!";
-          player.score++;
+        playerResultElem.innerHTML = "Win!";
+        player.score++;
     } else if (winnerIs == 'computer') {
-          computerResultElem.innerHTML = "Win!";
-          computer.score++;
+        computerResultElem.innerHTML = "Win!";
+        computer.score++;
     }
 
     setGamePoints();
@@ -121,7 +122,7 @@ function setGamePoints() {
 }
 
 function checkGameEnd() {
-    
+
     if (player.score == 10) {
         gameState = 'ended';
         setGameElements();
@@ -132,4 +133,3 @@ function checkGameEnd() {
         alert("Komputer jako pierwszy zdobył 10 punktów, niestety przegrałeś.");
     }
 }
-
